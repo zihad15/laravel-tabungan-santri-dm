@@ -73,9 +73,51 @@ class TransaksiController extends Controller
 
     public function userGetHistoryTransaction($nim)
     {
-        $datas6 = TransaksiModel::find($nim);
-        return view('transaction_history_admin',compact('datas6'));
+        if(!Session::get('loginAdmin')){
+            return redirect('login_admin')->with('alert','Kamu harus login dulu');
+        }
+        else{
+
+            $datas6 = TransaksiModel::where('nim', $nim)->orderBy('created_at', 'DESC/ASC')->get();
+            return view('transaction_history_admin',compact('datas6'));
+        }
     }
+
+    public function takingViaAdmin($nim)
+    {
+        if(!Session::get('loginAdmin')){
+            return redirect('login_admin')->with('alert','Kamu harus login dulu');
+        }
+        else{
+
+            $datas7 = UserModel::where('nim', $nim)->get()->first();
+            return view('transaction_save',compact('datas7'));
+        }
+    }
+
+    public function indexTransaksiAll()
+    {
+        if(!Session::get('loginAdmin')){
+            return redirect('login_admin')->with('alert','Kamu harus login dulu');
+        }
+        else{
+            $datas8 = TransaksiModel::orderBy('created_at', 'DESC/ASC')->get();
+            return view('transaction_data_all',compact('datas8'));
+        }
+    }
+
+    public function indexTransaksiReportAll()
+    {
+        if(!Session::get('loginAdmin')){
+            return redirect('login_admin')->with('alert','Kamu harus login dulu');
+        }
+        else{
+            $datas9 = TransaksiModel::orderBy('created_at', 'DESC/ASC')->get();
+            return view('transaction_report_all',compact('datas9'));
+        }
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -111,10 +153,10 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         $datas =  new TransaksiModel();
-        $datas->nim = $request->value=Session::get('nim');
-        $datas->name = $request->value=Session::get('name');
-        $datas->gender = $request->value=Session::get('gender');  
-        $datas->kelas = $request->value=Session::get('tahunAjaranMasuk');
+        $datas->nim = $request->nim;
+        $datas->name = $request->name;
+        $datas->gender = $request->gender;  
+        $datas->kelas = $request->kelas;
         $datas->saldoAwal = $request->saldoAwal;
         if ($request->saldoAkhir > $request->saldoAwal) {
             $datas->jenisTransaksi = $request->value="Saving";
@@ -138,7 +180,7 @@ class TransaksiController extends Controller
         $updatesaldo->save();
 
         if ($datas->jenisTransaksi == "Saving") {
-            return redirect('home_user')->with('alert-success','Saving Transaction successfully done!');
+            return redirect('home_admin')->with('alert-success','Saving Transaction successfully done!');
         }
         else
         {
@@ -163,7 +205,7 @@ class TransaksiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editSaving()
+    public function edit($id)
     {
         
     }

@@ -4,6 +4,12 @@
             <div class="block-header">
                 <h2>HOME ADMIN</h2>
             </div>
+            @if(Session::has('alert-success'))
+            <br>
+                <div class="alert alert-success">
+                    <strong>{{ \Illuminate\Support\Facades\Session::get('alert-success') }}</strong>
+                </div>
+            @endif
 
             <!-- Widgets -->
             <div class="row clearfix">

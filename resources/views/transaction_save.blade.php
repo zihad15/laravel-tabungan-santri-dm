@@ -1,4 +1,4 @@
-@extends('base_user')
+@extends('base_admin')
 @section('content')
 <script type="text/javascript">
     function showResult() {
@@ -46,31 +46,31 @@
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <label>Nim</label>
-                                        <input type="number" class="form-control" name="nim" id="nim" value="{{Session::get('nim')}}" readonly>
+                                        <input type="number" class="form-control" name="nim" id="nim" value="{{$datas7->nim}}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <label>Name</label>
-                                        <input type="text" class="form-control" name="name" value="{{Session::get('name')}}" readonly>
+                                        <input type="text" class="form-control" name="name" value="{{$datas7->name}}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <label>Gender</label>
-                                        <input type="text" class="form-control" name="gender" value="{{Session::get('gender')}}" readonly>
+                                        <input type="text" class="form-control" name="gender" value="{{$datas7->gender}}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <label>Kelas</label>
-                                        <input type="number" class="form-control" name="kelas" id="kelas" value="{{Session::get('tahunAjaranMasuk')}}"  readonly>
+                                        <input type="number" class="form-control" name="kelas" id="kelas" value="{{ 2018 - $datas7->tahunAjaranMasuk}}"  readonly>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <label>Saldo Saat Ini</label>
-                                        <input type="number" class="form-control" name="saldoAwal" id="saldoAwal" value="{{$user->saldo}}" readonly>
+                                        <input type="number" class="form-control" name="saldoAwal" id="saldoAwal" value="{{$datas7->saldo}}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group form-float">

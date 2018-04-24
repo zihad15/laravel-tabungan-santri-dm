@@ -13,17 +13,6 @@
             <!-- Widgets -->
             <div class="row clearfix">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="info-box bg-light-green">
-                        <div class="icon">
-                            <i class="material-icons">playlist_add_check</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">SAVE YOUR MONEY HERE</div>
-                            <a href="{{ url('transaction_save') }}" style="color: white;">Click here to add new Transaction!</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="info-box bg-cyan">
                         <div class="icon">
                             <i class="material-icons">playlist_add_check</i>

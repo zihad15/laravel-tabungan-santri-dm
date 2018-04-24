@@ -15,7 +15,7 @@
 Route::get('/home_admin', 'LoginController@indexAdmin');
 Route::get('/login_admin', 'LoginController@loginAdmin');
 Route::post('/loginPostAdmin', 'LoginController@loginPostAdmin');
-//Route::get('/register_admin', 'LoginController@registerAdmin');
+Route::get('/register_admin', 'LoginController@registerAdmin');
 Route::post('/registerPostAdmin', 'LoginController@registerPostAdmin');
 Route::get('/logoutAdmin', 'LoginController@logoutAdmin');
 
@@ -36,6 +36,9 @@ Route::get('transaction_report_putra','TransaksiController@indexTransaksiReportP
 Route::get('transaction_data_putri','TransaksiController@indexTransaksiPutri');
 Route::get('transaction_report_putri','TransaksiController@indexTransaksiReportPutri');
 Route::get('transaction_history_admin/{nim}','TransaksiController@userGetHistoryTransaction');
+Route::get('transaction-save-via-admin/{nim}','TransaksiController@takingViaAdmin');
+Route::get('transaction-data-all','TransaksiController@indexTransaksiAll');
+Route::get('transaction-report-all','TransaksiController@indexTransaksiReportAll');
 
 // TRANSACTION USER
 Route::get('transaction_save','TransaksiController@createSaving');

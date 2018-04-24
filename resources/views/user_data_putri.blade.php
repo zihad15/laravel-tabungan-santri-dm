@@ -40,6 +40,7 @@
                                             <th>Status</th>
                                             <th>Updated At</th>
                                             <th>Action</th>
+                                            <th> </th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -58,6 +59,7 @@
                                             <th>Status</th>
                                             <th>Updated At</th>
                                             <th>Action</th>
+                                            <th> </th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -84,6 +86,10 @@
                                                     <a href="{{ route('user_manage.edit',$data->id) }}" class=" btn btn-sm btn-primary">Edit</a>
                                                     <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">Delete</button>
                                                 </form>
+                                            </td>
+                                             <td>
+                                                <a href="{{ url('transaction-save-via-admin', $data->nim) }}" class="btn btn-sm btn-success">Saving</a>
+                                                <a href="{{ url('transaction_history_admin', $data->nim) }}" class="btn btn-sm btn-primary">Transaction History</a>
                                             </td>
                                         </tr>
                                         @endforeach

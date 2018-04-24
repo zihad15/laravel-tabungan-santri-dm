@@ -110,6 +110,9 @@
                             <li>
                                 <a href="{{ url('transaction_data_putri') }}">Transaction Data (Putri)</a>
                             </li>
+                            <li>
+                                <a href="{{ url('transaction-data-all') }}">Transaction Data (All)</a>
+                            </li>
                         </ul>
                     </li>
                     <li>
@@ -123,6 +126,9 @@
                             </li>
                             <li>
                                 <a href="{{ url('transaction_report_putri') }}">Report Data (Putri)</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('transaction-report-all') }}">Report Data (All)</a>
                             </li>
                         </ul>
                     </li>

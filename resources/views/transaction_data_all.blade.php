@@ -4,9 +4,14 @@
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
+                        <div class="header">
+                            <h2>
+                                TRANSACTION DATA (All)
+                            </h2>
+                        </div>
                         <div class="body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <table class="table table-bordered table-striped table-hover dataTable">
                                     <thead>
                                         <tr>
                                             <th>Nim</th>
@@ -34,7 +39,8 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @foreach($datas6 as $data)
+                                        @php $no = 1; @endphp
+                                        @foreach($datas8 as $data)
                                         <tr>
                                             <td>{{ $data->nim }}</td>
                                             <td>{{ $data->name }}</td>
