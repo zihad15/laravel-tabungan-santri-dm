@@ -20,14 +20,19 @@ Route::post('/registerPostAdmin', 'LoginController@registerPostAdmin');
 Route::get('/logoutAdmin', 'LoginController@logoutAdmin');
 
 // USER
-Route::get('/login_user', 'LoginController@loginUser');
+Route::get('/login-user-fp', 'LoginController@loginUser');
+Route::get('login-user', function () {
+    return view('login_user');
+});
 Route::post('/loginPostUser', 'LoginController@loginPostUser');
+Route::post('loginPostUserFp', 'LoginController@loginPostUserFp');
 Route::resource('user_manage','UserController');
 Route::get('user_add','UserController@userAdd');
 Route::get('user_data_putra','UserController@dataPutra');
 Route::get('user_data_putri','UserController@dataPutri');
 Route::get('/home_user', 'LoginController@indexUser');
 Route::get('/logoutUser', 'LoginController@logoutUser');
+Route::get('user-add-fingerprint/{id}', 'UserController@addFingerPrint');
 
 
 // TRANSACTION DATA (ADMIN)

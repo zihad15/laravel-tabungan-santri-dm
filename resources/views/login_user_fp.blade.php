@@ -7,7 +7,7 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_in" method="POST" action="{{ url('/loginPostUser') }}">
+                <form id="sign_in" method="POST" action="{{ url('loginPostUserFp') }}">
                   {{ csrf_field() }}
                     <div class="msg">                 
                     @if(\Session::has('alert'))
@@ -30,17 +30,9 @@
                             <input type="text" class="form-control" name="username" placeholder="Username" required">
                         </div>
                     </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="pin" placeholder="Pin" required>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-xs-8 p-t-5">
-                            <a href="{{ url('login-user-fp') }}" style="color: blue;">Login with Finger Print</a>
+                            <a href="{{ url('login-user') }}" style="color: blue;">Login with Pin</a>
                         </div>
                         <div class="col-xs-4">
                             <button class="btn btn-block btn-success waves-effect" type="submit">SIGN IN</button>

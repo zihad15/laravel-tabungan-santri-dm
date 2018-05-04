@@ -64,6 +64,12 @@ class UserController extends Controller
         return view('login_user_putra',compact('datas4'));
     }
 
+    public function addFingerPrint($id)
+    {
+        $datas5 = UserModel::find($id);
+        return view('add_finger_print',compact('datas5'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

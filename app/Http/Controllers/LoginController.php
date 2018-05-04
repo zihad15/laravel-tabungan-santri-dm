@@ -90,7 +90,7 @@ class LoginController extends Controller
 
 
     public function loginUser(){
-        return view('login_user');
+        return view('login_user_fp');
     }
 
     public function loginPostUser(Request $request){
@@ -116,8 +116,27 @@ class LoginController extends Controller
         }
     }
 
+    public function loginPostUserFp(Request $request){
+        $username = $request->username;     
+        $pin = $request->pin;
+        $data = UserModel::where('username',$username)->first();
+        if($data != null){ //apakah username tersebut ada atau tidak
+                Session::put('nim',$data->nim);
+                Session::put('name',$data->name);
+                Session::put('gender',$data->gender);
+                Session::put('tahunAjaranMasuk',2018 - $data->tahunAjaranMasuk);
+                Session::put('saldo',$data->saldo);
+                Session::put('loginUser',TRUE);
+                return redirect('home_user');
+            }
+
+        else{
+            return redirect()->back()->with('alert','Username, Salah !');
+        }
+    }
+
     public function logoutUser(){
         Session::flush();
-        return redirect('login_user')->with('alert','Kamu sudah logout');
+        return redirect('login-user-fp')->with('alert','Kamu sudah logout');
     }
 }

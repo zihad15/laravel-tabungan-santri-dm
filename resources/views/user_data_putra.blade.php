@@ -45,6 +45,7 @@
                                             <th>Saldo</th>
                                             <th>Status</th>
                                             <th>Updated At</th>
+                                            <th> </th>
                                             <th>Action</th>
                                             <th> </th>
                                         </tr>
@@ -64,6 +65,7 @@
                                             <th>Saldo</th>
                                             <th>Status</th>
                                             <th>Updated At</th>
+                                            <th> </th>
                                             <th>Action</th>
                                             <th> </th>
                                         </tr>
@@ -84,6 +86,8 @@
                                             <td>{{ $data->saldo }}</td>
                                             <td>{{ $data->status }}</td>
                                             <td>{{ $data->updated_at }}</td>
+                                            <td><a href="{{ url('user-add-fingerprint', $data->id) }}" class="btn btn-sm btn-success">Add FP</a>
+                                            </td>
                                             <td>
                                                 <form action="{{ route('user_manage.destroy', $data->id) }}" method="post">
                                                     {{ csrf_field() }}
