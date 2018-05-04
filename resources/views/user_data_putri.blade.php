@@ -23,7 +23,7 @@
                         </div>
                         <div class="body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover dataTable js-exportable" width="1970px">
+                                <table class="table table-bordered table-striped table-hover dataTable js-exportable" width="2000px">
                                     <thead>
                                         <tr>
                                             <th>Nim</th>
@@ -40,6 +40,7 @@
                                             <th>Status</th>
                                             <th>Updated At</th>
                                             <th>Action</th>
+                                            <th> </th>
                                             <th> </th>
                                         </tr>
                                     </thead>
@@ -59,6 +60,7 @@
                                             <th>Status</th>
                                             <th>Updated At</th>
                                             <th>Action</th>
+                                            <th> </th>
                                             <th> </th>
                                         </tr>
                                     </tfoot>
@@ -86,6 +88,9 @@
                                                     <a href="{{ route('user_manage.edit',$data->id) }}" class=" btn btn-sm btn-primary">Edit</a>
                                                     <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Yakin ingin menghapus data?')">Delete</button>
                                                 </form>
+                                            </td>
+                                            <td>
+                                                    <a href="{{ url('user-add-fingerprint', $data->id) }}" class="btn btn-sm btn-success">Add FP</a>
                                             </td>
                                              <td>
                                                 <a href="{{ url('transaction-save-via-admin', $data->nim) }}" class="btn btn-sm btn-success">Saving</a>
