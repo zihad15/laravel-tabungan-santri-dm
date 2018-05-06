@@ -1,5 +1,7 @@
 @extends('base_admin')
 @section('content')
+
+
 <!-- Exportable Table -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -27,6 +29,93 @@
                                 </li>
                             </ul>
                         </div>
+
+
+@php
+        include '../fp/global.php';
+        include '../fp/function.php';
+
+@endphp
+
+
+<script type="text/javascript">
+
+            $('title').html('User');
+
+            
+            function user_register(user_id, user_name) {
+                
+                $('body').ajaxMask();
+            
+                regStats = 0;
+                regCt = -1;
+                try
+                {
+                    timer_register.stop();
+                }
+                catch(err)  
+                {
+                    console.log('Registration timer has been init');
+                }
+                
+                
+                var limit = 4;
+                var ct = 1;
+                var timeout = 5000;
+                
+                timer_register = $.timer(timeout, function() {                  
+                    console.log("'"+user_name+"' registration checking...");
+                    user_checkregister(user_id,$("#user_finger_"+user_id).html());
+                    if (ct>=limit || regStats==1) 
+                    {
+                        timer_register.stop();
+                        console.log("'"+user_name+"' registration checking end");
+                        if (ct>=limit && regStats==0)
+                        {
+                            alert("'"+user_name+"' registration fail!");
+                            $('body').ajaxMask({ stop: true });
+                        }                       
+                        if (regStats==1)
+                        {
+                            $("#user_finger_"+user_id).html(regCt);
+                            alert("'"+user_name+"' registration success!");
+                            $('body').ajaxMask({ stop: true });
+                            load('user-add-fingerprint');
+                        }
+                    }
+                    ct++;
+                });
+            }
+            
+            function user_checkregister(user_id, current) {
+                $.ajax({
+                    type        :   "GET",
+                    success     :   function(data)
+                                    {
+                                        try
+                                        {
+                                            var res = jQuery.parseJSON(data);   
+                                            if (res.result)
+                                            {
+                                                regStats = 1;
+                                                $.each(res, function(key, value){
+                                                    if (key=='current')
+                                                    {                                                       
+                                                        regCt = value;
+                                                    }
+                                                });
+                                            }
+                                        }
+                                        catch(err)
+                                        {
+                                            alert(err.message);
+                                        }
+                                    }
+                });
+            }
+
+        </script>
+
                         <div class="body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable" width="2000px">
@@ -95,7 +184,12 @@
                                                 </form>
                                             </td>
                                             <td>
-                                                    <a href="{{ url('user-add-fingerprint', $data->id) }}" class="btn btn-sm btn-primary">Add FP</a>
+                                            @php
+                                            $url_register       = base64_encode("http://localhost/tabungan-santri-dm/fp/register.php?user_id=".$data->id);
+                                            @endphp
+                                                    <a href='finspot:FingerspotReg;@php echo $url_register; @endphp' class='btn btn-xs btn-primary' 
+                                                    onclick= "user_register('{{$data->id}}','{{$data->username}}')">Register</a>
+                                            
                                             </td>
                                             <td>
                                                 <a href="{{ url('transaction-save-via-admin', $data->nim) }}" class="btn btn-sm btn-success">Saving</a>
@@ -111,4 +205,77 @@
                 </div>
             </div>
             <!-- #END# Exportable Table -->
+
+@php
+
+        if (isset($_GET['action']) && $_GET['action'] == 'store') {
+
+        $res        = array();
+                $res['result']  = false;
+
+        if ($_GET['user_name'] == '' || !isset($_GET['user_name']) || empty($_GET['user_name'])) {
+
+            $res['user_name'] = "username can't empty";
+
+        } elseif (isset($_GET['user_name']) && !empty($_GET['user_name'])) {
+
+            $user_name = checkUserName($_GET['user_name']);
+
+            if ($user_name != 1) {
+
+                $res['user_name'] = $user_name;
+
+            }
+
+        }
+
+        if (count($res) > 1) {
+
+            echo json_encode($res);
+
+        } else {
+
+            $sql    = "INSERT INTO demo_user SET user_name='".$_GET['user_name']."' ";
+            $result = mysqli_query($conn, $sql);
+
+            if ($result) {
+
+                $res['result']  = true;
+                $res['reload']  = "user.php?action=index";
+
+            } else {
+
+                $res['server'] = "Error insert data!";
+
+            }
+
+            echo json_encode($res);
+
+        }
+
+    }  elseif (isset ($_GET['action']) && $_GET['action'] == 'checkreg') {
+        
+        $sql1       = "SELECT count(finger_id) as ct FROM demo_finger WHERE user_id=".$_GET['user_id'];
+        $result1    = mysqli_query($conn, $sql1);
+        $data1      = mysqli_fetch_array($result1);
+        
+        if (intval($data1['ct']) > intval($_GET['current'])) {
+            $res['result'] = true;          
+            $res['current'] = intval($data1['ct']);         
+        }
+        else
+        {
+            $res['result'] = false;
+        }
+        echo json_encode($res);
+        
+    } else {
+
+        echo "Parameter invalid..";
+    }
+
+@endphp
+
+
+
 @endsection

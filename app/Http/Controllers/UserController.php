@@ -67,7 +67,7 @@ class UserController extends Controller
     public function addFingerPrint($id)
     {
         $datas5 = UserModel::find($id);
-        return view('add_finger_print',compact('datas5'));
+        return view('user_data_putra',compact('datas5'));
     }
 
     /**
