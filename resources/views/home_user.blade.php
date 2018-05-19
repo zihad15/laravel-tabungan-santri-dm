@@ -18,7 +18,7 @@
                             <h1>1</h1>
                         </div>
                         <div class="content">
-                            <div class="text">Rp. 5.000</div>
+                            <h1>Rp. 5.000</h1>
                             <a style="color: white;" id="myBtn" onclick="showResult()">Press number 1!</a>
                             <!-- The Modal -->
                             <div id="myModal" class="modal">
@@ -83,7 +83,7 @@
                             <h1>2</h1>
                         </div>
                         <div class="content">
-                            <div class="text">Rp. 10.000</div>
+                            <h1>Rp. 10.000</h1>
                             <a style="color: white;" id="myBtn2" onclick="showResult2()">Press number 2!</a>
                             <!-- The Modal -->
                             <div id="myModal2" class="modal">
@@ -148,7 +148,7 @@
                             <h1>3</h1>
                         </div>
                         <div class="content">
-                            <div class="text">Rp. 20.000</div>
+                            <h1>Rp. 20.000</h1>
                             <a style="color: white;" id="myBtn3" onclick="showResult3()">Press number 3!</a>
                             <!-- The Modal -->
                             <div id="myModal3" class="modal">
@@ -213,7 +213,7 @@
                             <h1>4</h1>
                         </div>
                         <div class="content">
-                            <div class="text">Rp. 50.000</div>
+                            <h1>Rp. 50.000</h1>
                             <a style="color: white;" id="myBtn4" onclick="showResult4()">Press number 4!</a>
                             <!-- The Modal -->
                             <div id="myModal4" class="modal">
@@ -270,6 +270,14 @@
                               </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="info-box bg-blue">
+                        <div class="content">
+                            <h1>Saldo : {{Session::get('saldo')}}</h1>
                     </div>
                 </div>
             </div>
