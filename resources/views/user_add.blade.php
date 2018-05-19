@@ -38,11 +38,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="radio" name="gender" id="Putra" class="with-gap" value="Putra">
-                                    <label for="Putra">Putra</label>
+                                    <input type="radio" name="gender" id="Male" class="with-gap" value="Male">
+                                    <label for="Male">Male</label>
 
-                                    <input type="radio" name="gender" id="Putri" class="with-gap" value="Putri">
-                                    <label for="Putri" class="m-l-20">Putri</label>
+                                    <input type="radio" name="gender" id="Female" class="with-gap" value="Female">
+                                    <label for="Female" class="m-l-20">Female</label>
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">

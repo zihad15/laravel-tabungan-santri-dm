@@ -116,11 +116,10 @@ class LoginController extends Controller
         }
     }
 
-    public function loginPostUserFp(Request $request){
-        $username = $request->username;     
-        $pin = $request->pin;
-        $data = UserModel::where('username',$username)->first();
+    public function loginPostUserFp(Request $request, $id){
+        $data = UserModel::where('id',$id)->where('status', 'Aktif')->first();
         if($data != null){ //apakah username tersebut ada atau tidak
+                Session::put('id',$data->id);
                 Session::put('nim',$data->nim);
                 Session::put('name',$data->name);
                 Session::put('gender',$data->gender);
@@ -131,12 +130,17 @@ class LoginController extends Controller
             }
 
         else{
-            return redirect()->back()->with('alert','Username, Salah !');
+            return redirect()->back()->with('alert','Username atau Pin, Salah !');
         }
     }
 
-    public function logoutUser(){
+    public function logoutUser()
+    {
+        $id = Session::get('id');
+        $data = UserModel::where('id','=',$id)->get()->first();
+        $data->status = "Non Aktif";
+        $data->save();
         Session::flush();
-        return redirect('login-user-fp')->with('alert','Kamu sudah logout');
+        return redirect('http://localhost/sidik')->with('alert','Kamu sudah logout');
     }
 }

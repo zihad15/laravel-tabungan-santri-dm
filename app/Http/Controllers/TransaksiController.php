@@ -62,12 +62,12 @@ class TransaksiController extends Controller
     public function indexTransaksiHistoryUser()
     {
         if(!Session::get('loginUser')){
-            return redirect('login_user')->with('alert','Kamu harus login dulu');
+            return redirect('http://localhost/sidik')->with('alert','Kamu harus login dulu');
         }
         else{
             $nim=Session::get('nim');
-            $datas5 = TransaksiModel::where('nim','=',$nim)->orderBy('created_at', 'DESC/ASC')->get();
-            return view('transaction_history_user',compact('datas5'));
+            $datas5 = TransaksiModel::where('nim','=',$nim)->orderBy('created_at', 'DESC/ASC')->limit(10)->get();
+            return view('home_user',compact('datas5'));
         }
     }
 
@@ -162,7 +162,7 @@ class TransaksiController extends Controller
             $datas->jenisTransaksi = $request->value="Saving";
         }
         else {
-            $datas->jenisTransaksi = $request->value="Taking";
+            $datas->jenisTransaksi = $request->value="Withdrawal";
         }
         $datas->jumlah = $request->jumlah;
         $datas->saldoAkhir = $request->saldoAkhir;
@@ -184,7 +184,7 @@ class TransaksiController extends Controller
         }
         else
         {
-            return redirect('home_user')->with('alert-success','Taking Transaction successfully done!');
+            return redirect('logoutUser')->with('alert-success','Withdrawal Transaction successfully done!');
         }
     }
 

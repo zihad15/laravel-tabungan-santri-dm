@@ -31,13 +31,6 @@
                         </div>
 
 
-@php
-        include '../fp/global.php';
-        include '../fp/function.php';
-
-@endphp
-
-
 <script type="text/javascript">
 
             $('title').html('User');
@@ -184,12 +177,7 @@
                                                 </form>
                                             </td>
                                             <td>
-                                            @php
-                                            $url_register       = base64_encode("http://localhost/tabungan-santri-dm/fp/register.php?user_id=".$data->id);
-                                            @endphp
-                                                    <a href='finspot:FingerspotReg;@php echo $url_register; @endphp' class='btn btn-xs btn-primary' 
-                                                    onclick= "user_register('{{$data->id}}','{{$data->username}}')">Register</a>
-                                            
+                                                    <a href='http://localhost/sidik/' class='btn btn-xs btn-primary'>Register</a>
                                             </td>
                                             <td>
                                                 <a href="{{ url('transaction-save-via-admin', $data->nim) }}" class="btn btn-sm btn-success">Saving</a>
@@ -205,77 +193,6 @@
                 </div>
             </div>
             <!-- #END# Exportable Table -->
-
-@php
-
-        if (isset($_GET['action']) && $_GET['action'] == 'store') {
-
-        $res        = array();
-                $res['result']  = false;
-
-        if ($_GET['user_name'] == '' || !isset($_GET['user_name']) || empty($_GET['user_name'])) {
-
-            $res['user_name'] = "username can't empty";
-
-        } elseif (isset($_GET['user_name']) && !empty($_GET['user_name'])) {
-
-            $user_name = checkUserName($_GET['user_name']);
-
-            if ($user_name != 1) {
-
-                $res['user_name'] = $user_name;
-
-            }
-
-        }
-
-        if (count($res) > 1) {
-
-            echo json_encode($res);
-
-        } else {
-
-            $sql    = "INSERT INTO demo_user SET user_name='".$_GET['user_name']."' ";
-            $result = mysqli_query($conn, $sql);
-
-            if ($result) {
-
-                $res['result']  = true;
-                $res['reload']  = "user.php?action=index";
-
-            } else {
-
-                $res['server'] = "Error insert data!";
-
-            }
-
-            echo json_encode($res);
-
-        }
-
-    }  elseif (isset ($_GET['action']) && $_GET['action'] == 'checkreg') {
-        
-        $sql1       = "SELECT count(finger_id) as ct FROM demo_finger WHERE user_id=".$_GET['user_id'];
-        $result1    = mysqli_query($conn, $sql1);
-        $data1      = mysqli_fetch_array($result1);
-        
-        if (intval($data1['ct']) > intval($_GET['current'])) {
-            $res['result'] = true;          
-            $res['current'] = intval($data1['ct']);         
-        }
-        else
-        {
-            $res['result'] = false;
-        }
-        echo json_encode($res);
-        
-    } else {
-
-        echo "Parameter invalid..";
-    }
-
-@endphp
-
 
 
 @endsection

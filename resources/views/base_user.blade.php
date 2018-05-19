@@ -41,6 +41,7 @@
             kelas.value = result;
         }
     </script>
+    <link rel="stylesheet" type="text/css" href="{!! asset('assets/css/modal/modal.css') !!}">
 </head>
 <body class="theme-blue">
     <!-- Overlay For Sidebars -->
@@ -67,7 +68,7 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    @if(Session::get('gender') == "Putra")
+                    @if(Session::get('gender') == "Male")
                         <img src="assets/images/user/putra.jpg" width="100" height="100" alt="User">
                     @else
                         <img src="assets/images/user/putri.jpg" width="100" height="100" alt="User">
@@ -96,7 +97,7 @@
                 <ul class="list">
                     <li class="header">CURRENT BALANCE : {{$user->saldo}}</li>
                     <li class="active">
-                        <a href="{{ url('home_user') }}">
+                        <a href="{{ url('home_user') }}" id="btnHome">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
@@ -182,5 +183,89 @@
     <!-- Demo Js -->
     <script src="assets/js/demo.js"></script>
 
+<script>
+    // Get the modal
+    var modal = document.getElementById('myModal');
+    var modal2 = document.getElementById('myModal2');
+    var modal3 = document.getElementById('myModal3');
+    var modal4 = document.getElementById('myModal4');
+</script>
+<script type="text/javascript">
+    $(document).keypress(function(event){
+        if (event.keyCode == 49) { 
+                document.getElementById("myBtn").click(); 
+                modal.style.display = "block";
+            } else if (modal.style.display && event.keyCode == 13) {
+                document.forms[0].submit();
+            } else if (event.keyCode == 50) {
+                document.getElementById("myBtn2").click();
+                modal2.style.display = "block";
+            } else if (modal2.style.display && event.keyCode == 13) {
+                document.forms[1].submit();
+            } else if (event.keyCode == 51) {
+                document.getElementById("myBtn3").click();
+                modal3.style.display = "block";
+            } else if (modal3.style.display && event.keyCode == 13) {
+                document.forms[2].submit();
+            } else if (event.keyCode == 52) {
+                document.getElementById("myBtn4").click();
+                modal4.style.display = "block";
+            } else if (modal4.style.display && event.keyCode == 13) {
+                document.forms[3].submit();
+            } else if (event.keyCode == 48) {
+                document.getElementById("btnHome").click();
+            }
+    });
+</script>
+<script type="text/javascript">
+    function showResult() {
+            var a1 = parseInt(saldoAwal.value);
+            var a2 = parseInt(jumlah.value);
+            var result = 0;
+            if (a2 > a1) {
+                alert("Saldo anda tidak mencukupi untuk diambil")
+            }
+            else {
+            result = a1 - a2;
+            saldoAkhir.value = result;
+            }
+        }
+    function showResult2() {
+            var a1 = parseInt(saldoAwal2.value);
+            var a2 = parseInt(jumlah2.value);
+            var result = 0;
+            if (a2 > a1) {
+                alert("Saldo anda tidak mencukupi untuk diambil")
+            }
+            else {
+            result = a1 - a2;
+            saldoAkhir2.value = result;
+            }
+        }
+    function showResult3() {
+            var a1 = parseInt(saldoAwal3.value);
+            var a2 = parseInt(jumlah3.value);
+            var result = 0;
+            if (a2 > a1) {
+                alert("Saldo anda tidak mencukupi untuk diambil")
+            }
+            else {
+            result = a1 - a2;
+            saldoAkhir3.value = result;
+            }
+        }
+    function showResult4() {
+            var a1 = parseInt(saldoAwal4.value);
+            var a2 = parseInt(jumlah4.value);
+            var result = 0;
+            if (a2 > a1) {
+                alert("Saldo anda tidak mencukupi untuk diambil")
+            }
+            else {
+            result = a1 - a2;
+            saldoAkhir4.value = result;
+            }
+        }
+</script>
 </body>
 </html>

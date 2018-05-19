@@ -94,7 +94,7 @@
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <label>Saldo Akhir</label>
-                                        <input type="number" class="form-control" name="saldoAkhir" id="saldoAkhir" readonly>
+                                        <input type="number" class="form-control" name="saldoAkhir" id="saldoAkhir"  readonly>
                                     </div>
                                 </div>
                                 <button class="btn btn-primary waves-effect" type="submit">MAKE TRANSACTION</button>

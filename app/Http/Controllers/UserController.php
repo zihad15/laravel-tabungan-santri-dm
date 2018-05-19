@@ -32,7 +32,7 @@ class UserController extends Controller
             return redirect('login_admin')->with('alert','Kamu harus login dulu');
         }
         else{
-            $datas1 = UserModel::where('gender', 'Putra')->get();
+            $datas1 = UserModel::where('gender', 'Male')->get();
             return view('user_data_putra',compact('datas1'));
         }
     }
@@ -43,7 +43,7 @@ class UserController extends Controller
             return redirect('login_admin')->with('alert','Kamu harus login dulu');
         }
         else{
-            $datas2 = UserModel::where('gender', 'Putri')->get();
+            $datas2 = UserModel::where('gender', 'Female')->get();
             return view('user_data_putri',compact('datas2'));
         }
     }
@@ -117,7 +117,7 @@ class UserController extends Controller
         $datas->pin = bcrypt($request->pin);
         $datas->status = $request->status;
         $datas->save();
-        if ($datas->gender == "Putra") {
+        if ($datas->gender == "Male") {
             return redirect('user_data_putra')->with('alert-success','Data user berhasil ditambahkan!');
         }
         else
@@ -191,7 +191,7 @@ class UserController extends Controller
         $datas->pin = bcrypt($request->pin);
         $datas->status = $request->input('status');
         $datas->save();
-        if ($datas->gender == "Putra") {
+        if ($datas->gender == "Male") {
             return redirect('user_data_putra')->with('alert-success','Data user berhasil ditambahkan!');
         }
         else
@@ -208,8 +208,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        // $data = UserModel::where('id',$id)->first();
-        // $data->delete();
-        // return redirect()->route('user_manage.index')->with('alert-success','Data berhasil dihapus!');
+        $data = UserModel::where('id',$id)->first();
+        $data->delete();
+        if ($data->gender == "Male") {
+            return redirect('user_data_putra')->with('alert-success','Data berhasil dihapus!');
+        }else {
+            return redirect('user_data_putri')->with('alert-success','Data berhasil dihapus!');
+        }
+        
     }
 }
