@@ -141,6 +141,6 @@ class LoginController extends Controller
         $data->status = "Non Aktif";
         $data->save();
         Session::flush();
-        return redirect('http://192.168.100.7/sidik')->with('alert','Kamu sudah logout');
+        return redirect('http://localhost/sidik')->with('alert','Kamu sudah logout');
     }
 }

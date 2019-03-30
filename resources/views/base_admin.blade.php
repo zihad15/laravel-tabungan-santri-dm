@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Tabungan Santri</title>
     <!-- Favicon-->
-    <link rel="icon" href="assets/images/logo.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="{{{ asset('assets/images/logo.jpg') }}}">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -43,7 +43,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <img src="assets/images/logo.jpg" class="navbar-left" height="12%" width="12%">
+                <img src="{{{ asset('assets/images/logo.jpg') }}}" class="navbar-left" height="12%" width="12%">
                 <a class="navbar-brand" href="index.html">&nbsp; &nbsp; DAARUL MUGHNI AL - MAALIKI</a>
             </div>
            	<div class="nav navbar-nav navbar-right navbar-header">

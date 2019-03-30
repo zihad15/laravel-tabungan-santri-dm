@@ -117,6 +117,12 @@ class TransaksiController extends Controller
         }
     }
 
+    public function printTransaction()
+    {
+        $datas9 = TransaksiModel::orderBy('created_at', 'DESC/ASC')->get()->first();
+        return view('print-transaction',compact('datas10'));
+    }
+
 
 
     /**

@@ -68,7 +68,7 @@
                                         <input type="number" class="form-control" name="saldoAkhir" id="saldoAkhir" readonly>
                                     </div>
                                 </div>
-                                <input type="submit" class="btn btn-primary waves-effect" name="btnSubmit" id="btnSubmit" value="MAKE TRANSACTION">
+                                <input type="submit" class="btn btn-primary waves-effect" name="btnSubmit" id="btnSubmit" value="MAKE TRANSACTION" onclick="printData()">
                                 <p style="float: right;">Sudah benar? (Tekan ENTER jika benar dan tekan 0 jika salah!)</p>
                             </form>
                                 </div>
@@ -281,10 +281,11 @@
                     </div>
                 </div>
             </div>
+            <button onclick="printData()">PRINT TABLE</button>
             <h2>10 TRANSAKSI TERAKHIR</h2>
             <div class="body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-hover dataTable">
+                    <table class="table table-bordered table-striped table-hover dataTable" id="printTable">
                         <thead>
                             <tr>
                                 <th>Nim</th>

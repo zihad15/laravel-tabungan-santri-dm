@@ -50,3 +50,4 @@ Route::get('transaction_save','TransaksiController@createSaving');
 Route::get('transaction_take','TransaksiController@createTaking');
 Route::resource('transaction_index','TransaksiController');
 Route::get('transaction_history_user','TransaksiController@indexTransaksiHistoryUser');
+Route::get('print-transaction','TransaksiController@printTransaction');

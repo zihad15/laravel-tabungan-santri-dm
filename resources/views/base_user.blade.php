@@ -267,5 +267,46 @@
             }
         }
 </script>
+<!-- <script type="text/javascript">
+    function print(){
+    var applet = document;
+    applet.findPrinter("bixolon");
+    applet.append("Salsabila Medical Centre 24 Jam \n");
+    applet.append("RUKO LMC No. 70 Cibinong \n");
+    applet.append("Telp : 021 8790 5768 \n ");
+    applet.append("********************************* \n ");
+    applet.append("tgl : \n ");
+    applet.append("********************************* \n ");
+    applet.append("Nama Jumlah Harga \n ");
+
+    applet.append(" \t \n ");
+
+    applet.append("Total : \n ");
+    applet.append("Bayar : \n ");
+    applet.append("Kembali : \n ");
+    applet.append("********************************* \n ");
+    applet.append("Semoga Lekas Sembuh \n ");
+    applet.append("Barang yang sudah dibeli \n tidak dapat dikembalikan \n ");
+    applet.print();
+    monitorFinding();
+    }
+</script> -->
+
+<script>
+function myFunction() {
+    window.print();
+}
+</script>
+
+<script type="text/javascript">
+    function printData()
+{
+   var divToPrint=document.getElementById("printTable");
+   newWin= window.open("");
+   newWin.document.write(divToPrint.outerHTML);
+   newWin.print();
+   newWin.close();
+}
+</script>
 </body>
 </html>
